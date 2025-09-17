@@ -1,0 +1,34 @@
+node_modules
+.next
+.next-dev
+dist
+.DS_Store
+*.log
+/npm-debug.log*
+/yarn-debug.log*
+/yarn-error.log*
+/pnpm-debug.log*
+/.vercel
+/.env*
+
+# Local dev uploads
+/.uploads/
+
+# Tooling caches
+.eslintcache
+.turbo
+coverage
+
+# Editor/OS files
+.idea/
+.vscode/
+Thumbs.db
+desktop.ini
+
+# Next.js export output
+out/
+instruction
+/generated/prisma
+*.md
+.next-dev/*
+.vscode

@@ -1,0 +1,15 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "env": {
+    "NEXTAUTH_URL": "https://your-vercel-deployment-url",
+    "NEXTAUTH_SECRET": "",
+    "SUPABASE_URL": "",
+    "SUPABASE_ANON_KEY": "",
+    "SUPABASE_SERVICE_ROLE_KEY": "",
+    "SUPABASE_BUCKET": "uploads",
+    "USE_INMEMORY": "false"
+  }
+}
+

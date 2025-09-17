@@ -1,0 +1,48 @@
+{
+  "name": "excel-visualizer-landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth/supabase-adapter": "^1.10.0",
+    "@prisma/client": "^6.16.1",
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.57.4",
+    "bcryptjs": "^3.0.2",
+    "chart.js": "4.4.4",
+    "chartjs-plugin-zoom": "^2.0.1",
+    "clsx": "2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "11.0.21",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "0.453.0",
+    "next": "14.2.5",
+    "next-auth": "^4.24.11",
+    "next-seo": "6.5.0",
+    "openai": "^4.56.0",
+    "prisma": "^6.16.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "recharts": "2.10.4",
+    "tailwind-merge": "2.5.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "20.14.12",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "autoprefixer": "10.4.20",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.5",
+    "postcss": "8.4.47",
+    "tailwindcss": "3.4.10",
+    "typescript": "5.5.4"
+  }
+}
