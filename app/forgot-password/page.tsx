@@ -70,12 +70,12 @@ export default function ForgotPasswordPage() {
                 </div>
                 <h1 className="text-2xl font-semibold">Check your email</h1>
                 <p className="text-sm text-muted">
-                  We've sent a password reset link to {email}
+                  We&apos;ve sent a password reset link to {email}
                 </p>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-sm text-muted-foreground text-center">
-                  Didn't receive the email? Check your spam folder or{' '}
+                  Didn&apos;t receive the email? Check your spam folder or{' '}
                   <button 
                     onClick={() => setSuccess(false)} 
                     className="underline hover:no-underline"
@@ -109,7 +109,7 @@ export default function ForgotPasswordPage() {
             <CardHeader>
               <h1 className="text-2xl font-semibold">Reset your password</h1>
               <p className="text-sm text-muted">
-                Enter your email address and we'll send you a link to reset your password.
+                Enter your email address and we&apos;ll send you a link to reset your password.
               </p>
             </CardHeader>
             <CardContent>

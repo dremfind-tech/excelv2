@@ -5,9 +5,11 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import { Suspense } from "react";
 
-export default function CheckoutSuccessPage() {
+function CheckoutSuccessContent() {
   const [processing, setProcessing] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
   
@@ -16,6 +18,7 @@ export default function CheckoutSuccessPage() {
   const sessionId = searchParams.get('session_id');
 
   useEffect(() => {
+    setMounted(true);
     // Simulate processing payment confirmation
     const timer = setTimeout(() => {
       setProcessing(false);
@@ -23,6 +26,19 @@ export default function CheckoutSuccessPage() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  if (!mounted) {
+    return (
+      <section className="container-section">
+        <div className="max-w-md mx-auto">
+          <Card className="p-6 text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <h1 className="text-xl font-semibold mb-2">Loading...</h1>
+          </Card>
+        </div>
+      </section>
+    );
+  }
 
   if (processing) {
     return (
@@ -77,7 +93,7 @@ export default function CheckoutSuccessPage() {
               )}
               
               <div className="space-y-4">
-                <h3 className="font-semibold">What's next?</h3>
+                <h3 className="font-semibold">What&apos;s next?</h3>
                 <div className="grid gap-3 text-left">
                   <div className="flex items-start gap-3 p-3 border rounded-lg">
                     <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
@@ -126,5 +142,22 @@ export default function CheckoutSuccessPage() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+export default function CheckoutSuccessPage() {
+  return (
+    <Suspense fallback={
+      <section className="container-section">
+        <div className="max-w-md mx-auto">
+          <Card className="p-6 text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <h1 className="text-xl font-semibold mb-2">Loading...</h1>
+          </Card>
+        </div>
+      </section>
+    }>
+      <CheckoutSuccessContent />
+    </Suspense>
   );
 }
