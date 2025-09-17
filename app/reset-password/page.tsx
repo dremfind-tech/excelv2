@@ -7,14 +7,16 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Lock, CheckCircle, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 
-export default function ResetPasswordPage() {
+function ResetPasswordContent() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [tokenValid, setTokenValid] = useState<boolean | null>(null);
+  const [mounted, setMounted] = useState(false);
   
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -22,6 +24,7 @@ export default function ResetPasswordPage() {
   const refreshToken = searchParams.get('refresh_token');
 
   useEffect(() => {
+    setMounted(true);
     // Check if we have the required tokens
     if (!accessToken || !refreshToken) {
       setTokenValid(false);
@@ -29,6 +32,19 @@ export default function ResetPasswordPage() {
       setTokenValid(true);
     }
   }, [accessToken, refreshToken]);
+
+  if (!mounted) {
+    return (
+      <section className="container-section">
+        <div className="max-w-md mx-auto">
+          <Card className="p-6 text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <h1 className="text-xl font-semibold mb-2">Loading...</h1>
+          </Card>
+        </div>
+      </section>
+    );
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -201,19 +217,49 @@ export default function ResetPasswordPage() {
                       className="pl-9" 
                     />
                   </div>
-                  <p className="mt-1 text-xs text-muted">
-                    Password must be at least 6 characters long.
-                  </p>
                 </div>
-                {error && <div className="text-sm text-red-400">{error}</div>}
-                <Button type="submit" disabled={loading} className="w-full">
-                  {loading ? "Updating..." : "Update password"}
+                
+                {error && (
+                  <div className="text-red-600 text-sm text-center bg-red-50 p-2 rounded">
+                    {error}
+                  </div>
+                )}
+                
+                <Button 
+                  type="submit" 
+                  className="w-full" 
+                  disabled={loading}
+                >
+                  {loading ? "Updating password..." : "Update password"}
                 </Button>
+                
+                <div className="text-center text-sm">
+                  <Link href="/signin" className="text-primary hover:underline">
+                    Back to sign in
+                  </Link>
+                </div>
               </form>
             </CardContent>
           </Card>
         </motion.div>
       </div>
     </section>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={
+      <section className="container-section">
+        <div className="max-w-md mx-auto">
+          <Card className="p-6 text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <h1 className="text-xl font-semibold mb-2">Loading...</h1>
+          </Card>
+        </div>
+      </section>
+    }>
+      <ResetPasswordContent />
+    </Suspense>
   );
 }
