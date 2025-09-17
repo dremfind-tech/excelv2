@@ -13,6 +13,7 @@
     "@prisma/client": "^6.16.1",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.57.4",
+    "@vercel/analytics": "^1.5.0",
     "bcryptjs": "^3.0.2",
     "chart.js": "4.4.4",
     "chartjs-plugin-zoom": "^2.0.1",
